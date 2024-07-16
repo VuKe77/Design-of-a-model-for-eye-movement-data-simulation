@@ -73,22 +73,47 @@ mape_fsqrt = mean(abs((pred_fsqrt-DATA.SACC.peak_vals(mask_upper1))./DATA.SACC.p
 mape_sqrt = mean(abs((pred_sqrt-DATA.SACC.peak_vals)./DATA.SACC.peak_vals));
 mape_exp = mean(abs((pred_exp-DATA.SACC.peak_vals)./DATA.SACC.peak_vals));
 
+%Racunanje autokorelacione funkcije za razidualni grafik
+acor_fsqrt = autocorr(DATA.SACC.peak_vals(mask_upper1)-pred_fsqrt);
+acor_sqrt = autocorr(DATA.SACC.peak_vals-pred_sqrt);
+acor_exp = autocorr(DATA.SACC.peak_vals-pred_exp);
+
+
 figure()
-    stem(DATA.SACC.peak_vals-pred_sqrt)
-    xlabel('odbirak[n]')
-    ylabel('greska predikcije[deg/s]')
-     title('Rezidualni grafik:SQRT')
+    subplot(2,1,1)
+        stem(DATA.SACC.peak_vals(mask_upper1)-pred_fsqrt)
+        xlabel('odbirak[n]')
+        ylabel('greska predikcije[deg/s]')
+        title('Rezidualni grafik:FIXED SQRT')
+    subplot(2,1,2)
+        stem(acor_fsqrt)
+        xlabel('odbirak[k]')
+        ylabel('Amplituda[deg/s]')
+        title("Autokorelaciona f-ja rezidualnog grafika")
+        
 figure()
-    stem(DATA.SACC.peak_vals(mask_upper1)-pred_fsqrt)
-    xlabel('odbirak[n]')
-    ylabel('greska predikcije[deg/s]')
-    title('Rezidualni grafik:FIXED SQRT')
-    
+    subplot(2,1,1)
+        stem(DATA.SACC.peak_vals-pred_sqrt)
+        xlabel('odbirak[n]')
+        ylabel('greska predikcije[deg/s]')
+        title('Rezidualni grafik:SQRT')  
+   subplot(2,1,2)
+        stem(acor_sqrt)
+        xlabel('odbirak[k]')
+        ylabel('Amplituda[deg/s]')
+        title("Autokorelaciona f-ja rezidualnog grafika")
 figure()
-    stem(DATA.SACC.peak_vals-pred_exp)
-    xlabel('odbirak[n]')
-    ylabel('greska predikcije[deg/s]')
-    title('Rezidualni grafik:EXP')
+    subplot(2,1,1)
+        stem(DATA.SACC.peak_vals-pred_exp)
+        xlabel('odbirak[n]')
+        ylabel('greska predikcije[deg/s]')
+        title('Rezidualni grafik:EXP')
+
+     subplot(2,1,2)
+        stem(acor_exp)
+        xlabel('odbirak[k]')
+        ylabel('Amplituda[deg/s]')
+        title("Autokorelaciona f-ja rezidualnog grafika")
     
     
 
@@ -161,22 +186,47 @@ mape_fsqrt = mean(abs((pred_fsqrt-DATA.SACC.durations(mask_upper1))./DATA.SACC.d
 mape_sqrt = mean(abs((pred_sqrt-DATA.SACC.durations)./DATA.SACC.durations));
 mape_exp = mean(abs((pred_exp-DATA.SACC.durations)./DATA.SACC.durations));
 
+%Racunanje autokorelacione funkcije za razidualni grafik
+acor_fsqrt = autocorr(DATA.SACC.peak_vals(mask_upper1)-pred_fsqrt);
+acor_sqrt = autocorr(DATA.SACC.peak_vals-pred_sqrt);
+acor_exp = autocorr(DATA.SACC.peak_vals-pred_exp);
+
+
 figure()
-    stem(DATA.SACC.durations-pred_sqrt)
-    xlabel('odbirak[n]')
-    ylabel('greska predikcije[deg/s]')
-     title('Rezidualni grafik:SQRT')
+    subplot(2,1,1)
+        stem(DATA.SACC.durations(mask_upper1)-pred_fsqrt)
+        xlabel('odbirak[n]')
+        ylabel('greska predikcije[deg/s]')
+        title('Rezidualni grafik:FIXED SQRT')
+    subplot(2,1,2)
+        stem(acor_fsqrt)
+        xlabel('odbirak[k]')
+        ylabel('Amplituda[deg/s]')
+        title("Autokorelaciona f-ja rezidualnog grafika")
+ figure()
+    subplot(2,1,1)
+        stem(DATA.SACC.durations-pred_sqrt)
+        xlabel('odbirak[n]')
+        ylabel('greska predikcije[deg/s]')
+        title('Rezidualni grafik:SQRT')  
+   subplot(2,1,2)
+        stem(acor_sqrt)
+        xlabel('odbirak[k]')
+        ylabel('Amplituda[deg/s]')
+        title("Autokorelaciona f-ja rezidualnog grafika")
 figure()
-    stem(DATA.SACC.durations(mask_upper1)-pred_fsqrt)
-    xlabel('odbirak[n]')
-    ylabel('greska predikcije[deg/s]')
-    title('Rezidualni grafik:FIXED SQRT')
+    subplot(2,1,1)
+        stem(DATA.SACC.durations-pred_exp)
+        xlabel('odbirak[n]')
+        ylabel('greska predikcije[deg/s]')
+        title('Rezidualni grafik:EXP')
+
+     subplot(2,1,2)
+        stem(acor_exp)
+        xlabel('odbirak[k]')
+        ylabel('Amplituda[deg/s]')
+        title("Autokorelaciona f-ja rezidualnog grafika")
     
-figure()
-    stem(DATA.SACC.durations-pred_exp)
-    xlabel('odbirak[n]')
-    ylabel('greska predikcije[deg/s]')
-    title('Rezidualni grafik:EXP')
     
     
 
@@ -210,6 +260,22 @@ figure()
     ylabel("Trajanje sakade[s]")
     legend(["Uzorci","Model"])
     grid on;
+
+%% provera trajanja
+ri = round(rand*length(DATA.SACC.durations))
+d = DATA.SACC.offsets(ri)-DATA.SACC.onsets(ri)
+figure
+    hold all;
+    plot(DATA.GAZE.vel)
+    plot(DATA.SACC.onsets(ri),DATA.GAZE.vel(DATA.SACC.onsets(ri)),'g*')
+    plot(DATA.SACC.offsets(ri), DATA.GAZE.vel(DATA.SACC.offsets(ri)),'r*')
+    xlim([DATA.SACC.onsets(ri)-10 DATA.SACC.offsets(ri)+10])
+    title(['Trajanje sakade: '  num2str(DATA.SACC.durations(ri),3) 'ms' '/' num2str(d,3) 'odb'])
+    hold off;
+a1 = autocorr(DATA.SACC.durations)
+% figure
+%     stem(a1)
+
 
 
 

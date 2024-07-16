@@ -16,6 +16,8 @@ function DATA = detekcija_sakada(raw_data,t)
 % 
 %            DATA.SACC.peak_vals - pikovi brzine sakada [deg/s]
 %            DATA.SACC.peak_idxs - indeksi pikova brzina sakada
+%            DATA.SACC.onsets - indeksi pocetka sakada
+%            DATA.SACC.offsets - indeksi krajeva sakada
 %            DATA.SACC.durations - trajanje sakada [ms]
 %            DATA.SACC.amplitudes - amplitude sakada [deg]
 %            DATA.SACC.traj - niz trajektorija sakada [deg]
@@ -121,9 +123,7 @@ for i=1:length(peak_idxs)
            break;
        end
         if gaze_vel(peak_idxs(i)-j)<T_onset 
-           if gaze_vel(peak_idxs(i)-j)<gaze_vel(peak_idxs(i)-j-1)
-                a1 = gaze_vel(peak_idxs(i)-j);
-                a2 = gaze_vel(peak_idxs(i)-j-1);
+           if gaze_vel(peak_idxs(i)-j)-gaze_vel(peak_idxs(i)-j-1)<=0
                 onset_idxs = [onset_idxs peak_idxs(i)-j]; 
                 break;
             end
@@ -149,9 +149,7 @@ for i = 1:length(peak_idxs)
         end
         
         if gaze_vel(peak_idxs(i)+j)<T_onset 
-           if gaze_vel(peak_idxs(i)+j)<gaze_vel(peak_idxs(i)+j+1)
-                a1 = gaze_vel(peak_idxs(i)+j);
-                a2 = gaze_vel(peak_idxs(i)+j+1);
+           if gaze_vel(peak_idxs(i)+j) - gaze_vel(peak_idxs(i)+j+1)<=0
                 offset_idxs = [offset_idxs peak_idxs(i)+j]; 
                 break;
             end
@@ -194,7 +192,8 @@ onset_vals = onset_vals(valid==1);
 offset_vals = offset_vals(valid==1);
 durations = durations(valid==1);
 
-durations = durations/250*1000;
+durations = durations/Fs*1000;
+
 
         
 figure()
@@ -239,6 +238,8 @@ DATA.GAZE.vel = gaze_vel;
 
 DATA.SACC.peak_vals = peak_vals;
 DATA.SACC.peak_idxs = peak_idxs;
+DATA.SACC.onsets = onset_idxs;
+DATA.SACC.offsets = offset_idxs;
 DATA.SACC.durations = durations;
 DATA.SACC.amplitudes = sacc_amplitudes;
 DATA.SACC.traj = sacc_traj;
