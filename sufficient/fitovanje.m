@@ -21,20 +21,22 @@ for i=1:length(a)
     subplot(2,1,1)
         hold on;
         plot(t,y)
-        xlabel('t[s]')
+        %xlabel('Vreme[s]')
         ylabel('Amplituda[a.u]')
         legend_info{i} = ['a=' num2str(a(i))];
         title('Hilova jednacina')
+        xlim([0,30])
         hold off;
     subplot(2,1,2)
         hold on;
         plot(t,y1)
-        xlabel('t[s]')
+        xlabel('Vreme[s]')
         ylabel('Amplituda[a.u]')
-        legend_info{i} = ['a=' num2str(a(i))];
+        %legend_info{i} = ['a=' num2str(a(i))];
         title('Prvi izvod')
-        legend(legend_info)
+        %legend(legend_info)
         hold off;
+        xlim([0,30])
 
 end
 hold off
@@ -57,22 +59,24 @@ legend(legend_info)
 
 
 %% numericki algoritam sa Emax i E0
-
-td=0.07;
-Vmax = 600;
-Emax=25;
+Ts = 0.001;
+Emax =20;
+td = model_duration(Emax)/1000; %We need td in seconds
+Vmax = model_peak(Emax);
 E0=0;
-[y,t] = fitovanje_trajektorije(Vmax, td, E0, Emax,1);
+[y,t] = fitovanje_trajektorije(Vmax, td, E0, Emax,Ts);
 y_1 = central_diff(y,0.001);
 figure
-    title("sakade")
+    
     subplot(2,1,1)
-        plot(t,y)
+        stem(t,y)
         ylabel('Amplituda[deg]')
+        title("Amplituda sakade")
     subplot(2,1,2)
-        plot(t,y_1)
-        xlabel('t[s]')
+        stem(t,y_1)
+        xlabel('Vreme[s]')
         ylabel('Brzina[deg/s]')
+        title("Brzina sakade")
         
 %% Algoritam sa semplovanjem duzine i max_amplitude
 amplitudes = 0:0.1:25;

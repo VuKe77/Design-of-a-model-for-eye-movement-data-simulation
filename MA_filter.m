@@ -1,8 +1,8 @@
 function [filterd_signal] = MA_filter(signal,window_length)
-%Performs offline MA filtering of signal with point centered at the
-%window using for filtering. Window length is in samples[n]
+%Izvodi offline MA filtriranje signala sa tačkom centriranom u
+%prozoru koji se koristi za filtriranje. Dužina prozora je u uzorcima[n]
 
-filterd_signal = zeros(1,length(signal))';
+filterd_signal = signal;
 half_window = ceil(window_length/2);
 
 for i=1:length(signal)-half_window

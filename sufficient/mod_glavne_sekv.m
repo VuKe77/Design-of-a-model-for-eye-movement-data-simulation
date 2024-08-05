@@ -22,8 +22,28 @@ x_data = x_data(valid_idxs);
 y_data = y_data(valid_idxs);
 raw_data = [x_data  y_data];
 t = (0:1:length(raw_data)-1)/250;
+%% ucitavanje 3
+data_path = "D:\ETF nastava\VIII semsetar\Diplomski\GazeBaseData\Subject_1001\S1\S1_Video_1\S_1001_S1_VD1.csv";
+T = csvread(data_path,1,0);
+Fs = 1000;
+valid = T(:,4);
+raw_data = T(:,2:3);
+raw_data = raw_data(valid==0,:);
+t = 0:1/Fs:(length(raw_data)-1)/Fs;
+%uklanjanje impulsnog suma
+sig = raw_data(:,1);
+sigf = ukloni_impulsni_sum(sig,1000);
+figure
+    hold on;
+    plot(t,sig)
+    plot(t,sigf)
+    xlabel('t[s]')
+    ylabel('Amplituda[deg]')
+    title("Uklanjanje impulsnog suma")
+    legend(["originalan siglan", "filtriran signal"])
+
 %% izdvajanje statistickih obelezja i sekvenci
-DATA = detekcija_sakada(raw_data,t);
+DATA = detekcija_sakada(sigf,t);
 figure
     scatter(DATA.SACC.amplitudes,DATA.SACC.peak_vals)
     xlabel('Amplituda[deg]')
@@ -35,6 +55,25 @@ figure
     ylabel("Trajanje sakade[s]")
     title("Glavna sekvenca")
    
+%% fitovanje amplituda sakada na gamma raspodelu
+data= DATA.SACC.amplitudes';
+amp_pdf = fitdist(data,'Weibull');
+
+save('ampPDF.mat', 'amp_pdf');
+
+x_values = linspace(min(data), max(data), 100);
+y_values = pdf(amp_pdf, x_values);
+% Plot the histogram of the data
+figure
+    histogram(data,30, 'Normalization', 'pdf', 'EdgeColor', 'none');
+    hold on;
+    plot(x_values, y_values, 'r-', 'LineWidth', 2);
+    xlabel('Amplituda sakada[deg]');
+    ylabel('FGV');
+    legend('Histogram podataka', 'Fitovana  raspodela');
+    title('Fitovanje normalne raspodele nad odbircima amplitude sakada');
+hold off;
+
 
 %% modelovanje glavne sekvence amplituda - pik brzine(main sequence modeling)
 %FIXED SQRT
@@ -147,8 +186,10 @@ figure()
     legend(["Uzorci","Model"])
     grid on;
     
-    
-    
+% Cuvanj najboljeg rezultata u .mat fajl
+best_model = model_exp;
+save('modelPeak.mat', 'best_model');
+   
 %% modelovanje glavne sekvence amplituda - trajanje sakade(main sequence modeling)
 %FIXED SQRT
 ft_fsqrt = fittype( 'FIXED_SQRT(x,V,VA,Ath)','independent', 'x','coefficients','V','problem',{'VA','Ath'});
@@ -261,6 +302,10 @@ figure()
     legend(["Uzorci","Model"])
     grid on;
 
+% Cuvanj najboljeg rezultata u .mat fajl
+best_model = model_exp1;
+save('modelDuration.mat', 'best_model');
+
 %% provera trajanja
 ri = round(rand*length(DATA.SACC.durations))
 d = DATA.SACC.offsets(ri)-DATA.SACC.onsets(ri)
@@ -273,8 +318,37 @@ figure
     title(['Trajanje sakade: '  num2str(DATA.SACC.durations(ri),3) 'ms' '/' num2str(d,3) 'odb'])
     hold off;
 a1 = autocorr(DATA.SACC.durations)
-% figure
-%     stem(a1)
+
+%% provera distribucije trajanja fiksacije
+
+figure
+    hist(DATA.SACC.gaze_times)
+    
+figure
+    plot(DATA.SACC.amplitudes(1:end-1), DATA.SACC.gaze_times, 'bo')
+    xlabel('Amplituda[deg]')
+    ylabel('Vreme fiksacije[ms]')
+    title('Odnos izmedju vremena fiksacije i amplituda sakade')
+    grid on;
+
+%% fitovanje vremena pauze na distribuciju
+data= DATA.SACC.gaze_times';
+gaze_pdf = fitdist(data,'Weibull');
+
+save('gazePDF.mat', 'gaze_pdf');
+
+x_values = linspace(min(data), max(data), 100);
+y_values = pdf(gaze_pdf, x_values);
+% Plot the histogram of the data
+figure
+    histogram(data,30, 'Normalization', 'pdf', 'EdgeColor', 'none');
+    hold on;
+    plot(x_values, y_values, 'r-', 'LineWidth', 2);
+    xlabel('Trajanje fiksacije oka[deg]');
+    ylabel('FGV');
+    legend('Histogram podataka', 'Fitovana normalna raspodela');
+    title('Fitovanje normalne raspodele nad odbircima amplitude sakada');
+hold off;
 
 
 
