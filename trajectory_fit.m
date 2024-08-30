@@ -21,7 +21,7 @@ function [y,t,A] = trajectory_fit(Vmax,td,E0,Emax,Fs,tstart)
 
 %inicilajizacija algoritma
 dE = Emax - E0;
-t = 0:0.001:td-0.001; %dodajemo 100ms na trajanje sakade
+t = 0:0.001:td-0.001; 
 y2 = [];
 E50s = [];
 as = [];

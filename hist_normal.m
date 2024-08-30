@@ -1,4 +1,4 @@
-function [mean_x,std_x] = hist_normal(x,title)
+function [x_mean,x_std] = hist_normal(x,title)
 max_x = max(x);
 min_x = min(x);
 x_mean = mean(x);
