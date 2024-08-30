@@ -1,4 +1,4 @@
-function [y,t,A] = fitovanje_trajketorije(Vmax,td,E0,Emax,Fs,tstart)
+function [y,t,A] = trajectory_fit(Vmax,td,E0,Emax,Fs,tstart)
 %Modelovanje trajektorije sakade Hilovom jednacinom. 
 % Ulaz:
 %     Vmax - maksimalna brina sakade [deg/s]

@@ -9,10 +9,10 @@ clear all
 %% simulacija signala pokreta ociju
 rng(42)
 Tmax = 10; %duzina simuliranog signala
-Fs = 10; %frekvencija odabiranja 
+Fs = 1000; %frekvencija odabiranja 
 noise = 0;
-SIM1 = sim_pokreti_oka(Tmax,Fs,noise);
-%SIM2 = sim_pokreti_oka(Tmax,Fs,noise);
+SIM1 = simulate_signal(Tmax,Fs,noise);
+SIM2 = simulate_signal(Tmax,Fs,noise);
 %% iscrtavanje pocetaka i krajeva sakada signala SIM1
 t = SIM1.SIGNALS.t;
 onset_idx = find_indices(SIM1.PARAMS.onsets,t);
@@ -45,7 +45,8 @@ figure
 
 simulated = [SIM2.SIGNALS.AMP' SIM1.SIGNALS.AMP'];
 
-DATA = detekcija_sakada(simulated,t);
+DATA = saccade_detection(simulated,t);
+%%
 figure
     scatter(DATA.SACC.amplitudes,DATA.SACC.peak_vals)
     xlabel('Amplituda[\circ]')

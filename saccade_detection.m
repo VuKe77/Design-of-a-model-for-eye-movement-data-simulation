@@ -1,4 +1,4 @@
-function DATA = detekcija_sakada(raw_data,t)
+function DATA = saccade_detection(raw_data,t)
 %Algoritam za detekciju sakada i izdvajanje statistickih obelezja.
 % Na osnovu horizontalnog stepena vizuelnog ugla se vrsi detekcija sakada
 % inspirisan algoritmom opisanim u radu Nystrom,Holmqvist(2010). 

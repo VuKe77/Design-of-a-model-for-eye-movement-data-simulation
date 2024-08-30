@@ -10,7 +10,11 @@ Shared programs are free software: you can redistribute them and/or modify them 
 Please, report any bugs to the Authors listed in the Contacts.
 The repository contains the following code:
 
-1)
+1) saccade_detection.m - MATLAB code for saccade detection and extraction of statistical features.
+2) model_fitting.m - MATLAB code for Code for statistical processing of signal parameters of interest, modeling their distributions and modeling main sequences of saccadic eye movements.
+3) simulate_signal.m - MATALB code for simulating eye movement signal
+4) trajectory_fit.m - MATLAB code for fitting a saccade trajectory using Hill's equation.
+5) 
 
 ### Data
 

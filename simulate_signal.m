@@ -1,4 +1,4 @@
-function [SIM] = sim_pokreti_oka(Tmax,Fs,noise)
+function [SIM] = simulate_signal(Tmax,Fs,noise)
 %Funkcija simulira signal pokreta ociju.
 % ULAZ:
 %     Tmax - ukupno trajanje signala u sekundama

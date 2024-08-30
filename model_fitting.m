@@ -64,7 +64,7 @@ figure
 
 %% izdvajanje statistickih obelezja i sekvenci
 
-DATA = detekcija_sakada(raw_data,t);
+DATA = saccade_detection(raw_data,t);
 %%
 set(gca,'fontsize', 2)
 figure
