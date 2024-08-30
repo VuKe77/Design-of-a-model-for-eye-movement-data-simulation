@@ -7,11 +7,12 @@ clear all
 
 
 %% simulacija signala pokreta ociju
-Tmax = 60; %duzina simuliranog signala
-Fs = 1000; %frekvencija odabiranja 
+rng(42)
+Tmax = 10; %duzina simuliranog signala
+Fs = 10; %frekvencija odabiranja 
 noise = 0;
 SIM1 = sim_pokreti_oka(Tmax,Fs,noise);
-SIM2 = sim_pokreti_oka(Tmax,Fs,noise);
+%SIM2 = sim_pokreti_oka(Tmax,Fs,noise);
 %% iscrtavanje pocetaka i krajeva sakada signala SIM1
 t = SIM1.SIGNALS.t;
 onset_idx = find_indices(SIM1.PARAMS.onsets,t);
@@ -23,7 +24,7 @@ figure
         plot(t, SIM1.SIGNALS.AMP)
         plot(SIM1.PARAMS.onsets,SIM1.SIGNALS.AMP(onset_idx),'x')
         plot(SIM1.PARAMS.offsets,SIM1.SIGNALS.AMP(offset_idx),'o')
-        ylabel("Amplituda s.v.u[deg]")
+        ylabel("Amplituda s.v.u[\circ]")
         legend(["signal","pocetak", "kraj"])
         title("Prikaz obelezenih sakada")
      subplot(2,1,2)
@@ -31,7 +32,7 @@ figure
         plot(t, SIM1.SIGNALS.VEL)
         plot(SIM1.PARAMS.onsets,SIM1.SIGNALS.VEL(onset_idx),'x')
         plot(SIM1.PARAMS.offsets,SIM1.SIGNALS.VEL(offset_idx),'o')
-        ylabel("Apsolutna brzina promene s.v.u[deg/s]")
+        ylabel("Apsolutna brzina promene s.v.u[\circ/s]")
         xlabel("Vreme[s]")
      
 
@@ -47,14 +48,14 @@ simulated = [SIM2.SIGNALS.AMP' SIM1.SIGNALS.AMP'];
 DATA = detekcija_sakada(simulated,t);
 figure
     scatter(DATA.SACC.amplitudes,DATA.SACC.peak_vals)
-    xlabel('Amplituda[deg]')
-    ylabel("Maksimum brzine[deg/s]")
+    xlabel('Amplituda[\circ]')
+    ylabel("Maksimum brzine[\circ/s]")
     title("Glavna sekvenca")
     grid on;
 figure
     scatter(DATA.SACC.amplitudes,DATA.SACC.durations)
-    xlabel('Amplituda[deg]')
-    ylabel("Trajanje sakade[s]")
+    xlabel('Amplituda[\circ]')
+    ylabel("Trajanje sakade[ms]")
     title("Glavna sekvenca")
     grid on;
 

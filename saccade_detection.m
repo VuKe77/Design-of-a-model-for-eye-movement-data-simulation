@@ -45,6 +45,12 @@ plot(raw_x,raw_y)
 title('Koordinate pogleda na ekranu')
 xlabel('x[piksel]')
 ylabel('y[piksel]')
+%% vizualizacija 
+figure
+    plot(t,deg_x)
+    ylabel('Amplituda s.v.u[\circ]')
+    xlabel('Vreme[s]')
+    title(['Originalan signal pokreta oka'])
 
 %% filtriranje
 
@@ -57,7 +63,7 @@ figure()
     plot(t,deg_x)
     plot(t,filt_x)
     xlabel('Vreme[s]')
-    ylabel('Amplituda[deg]')
+    ylabel('Amplituda[\circ]')
     legend(["originalan signal", "filtriran signal"])
     hold off;
 
@@ -69,18 +75,18 @@ figure()
     plot(t,gaze_amp)
     title("Amplituda stepena vizuelnog ugla")
     xlabel('Vreme[s]')
-    ylabel('Amplituda[deg]')
+    ylabel('Amplituda[\circ]')
 figure()
     title("Apsolutna vrednost brzine promene s.v.u")
     hold all
     plot(t,abs(gaze_vel))
     xlabel('Vreme[s]')
-    ylabel('Amplituda[deg/s]')
+    ylabel('Amplituda[\circ/s]')
 %% ALGORITAM ZA DETKCIJU SAKADA %%
 
 %inicijalizacija praga
 PT = 100 + 200*rand(1);
-PT = 200;
+PT = 200; %za diplomski, kako bi rezultati bili konzistentni
 run_flag = true;
 iter = 0;
 PTs = [];
@@ -101,7 +107,7 @@ end
 %Algoritam konvergira ka istoj vrednosti veoma brzo!
 figure()
     plot(PTs)
-    ylabel("Vrednost praga PT [deg/s]")
+    ylabel("Vrednost praga PT [\circ/s]")
     xlabel("Iteracija[n]")
     title("Konvergencija algoritma za detekciju praga")
     curtick = get(gca, 'XTick');
@@ -150,7 +156,7 @@ for i = 1:length(peak_idxs)
             break;
         end
         
-        if gaze_vel(peak_idxs(i)+j)<T_onset 
+        if gaze_vel(peak_idxs(i)+j)<T_offset 
            if gaze_vel(peak_idxs(i)+j) - gaze_vel(peak_idxs(i)+j+1)<=0
                 offset_idxs = [offset_idxs peak_idxs(i)+j]; 
                 break;
@@ -214,7 +220,7 @@ figure()
     plot(t(onset_idxs),onset_vals,'o')
     plot(t(offset_idxs),offset_vals,'*')
     xlabel('Vreme[s]')
-    ylabel('Brzina[deg/s]')
+    ylabel('Brzina[\circ/s]')
     legend(["signal","maksimumi", "pocetak", "kraj"])
     hold off;
 figure()
@@ -224,7 +230,7 @@ figure()
     plot(t(onset_idxs),gaze_amp(onset_idxs),'o')
     plot(t(offset_idxs),gaze_amp(offset_idxs),'*')
     xlabel('Vreme[s]')
-    ylabel('Amplituda[deg/s]')
+    ylabel('Amplituda[\circ/s]')
     legend(["signal", "pocetak", "kraj"])
     hold off;
     

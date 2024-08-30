@@ -74,7 +74,7 @@ while true
   
     
     %formiranje sakade
-    [sacc, t1, amplitude] = fitovanje_trajektorije(Vmax,td,E0,Emax,Fs,t_last);
+    [sacc, t1, amplitude] = trajectory_fit(Vmax,td,E0,Emax,Fs,t_last);
     td = length(sacc)/Fs;
     onsets = [onsets t_last];
     %edge case
@@ -128,12 +128,12 @@ sacc_velocity = sacc_velocity(1:length(t));
 figure
     subplot(2,1,1)
         plot(t,sacc_amplitude)
-        ylabel('Amplituda s.v.u[deg]')
+        ylabel('Amplituda s.v.u[\circ]')
         title(['Simulacija signala pokreta oka, Fs = ' num2str(Fs) 'Hz'])
     subplot(2,1,2)
         plot(t,abs(sacc_velocity))
         xlabel('Vreme[s]')
-        ylabel('Brzina promene s.v.u[deg/s]')
+        ylabel('Brzina promene s.v.u[\circ/s]')
 %Cuvanje signal i parametara u strukturu
 SIM = struct;
 SIM.SIGNALS.t = t;
