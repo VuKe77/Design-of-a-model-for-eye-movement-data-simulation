@@ -76,17 +76,43 @@ if  y1(end)>=0 && length(y)>1
 
     % Cumulatively sum the derivative to recover the function values
     for i = 2:length(y)
-        y(i) = y(i-1) + y1(i-1)*(1/Fs);
+        y(i) = y(i-1) + y1(i)*(1/Fs);
     end
 end
 A = y(end);
 %resampling
 y = y(1:round(1000/Fs):end);
+y1 = central_diff(y,1/Fs); %added
+%save position of maximum and maximum
+%[Vmax,Vmax_idx] = max(abs(y1));
+
+% %DEBUG central_deriv
+% y1_s = central_diff(y,1/Fs);
+% figure
+%     hold all
+%     plot(t, y1_s)
+%     plot(t, y1)
+%     legend(["y1_s","y1"])
+    
+
+
+    
+
 
 switch nargin
     case 6
         t = t+tstart;
-        
+%Save position of maximum
+%Vmax_pos = t(Vmax_idx);
+
+%DEBUG
+% figure
+%     hold all
+%     plot(t,abs(test))
+%     plot(t,abs(y1))
+%     plot(t(Vmax_idx),Vmax,'x')
+%     plot(t(Vmax_idx),Vmax,'o')
+   
 
 
 end

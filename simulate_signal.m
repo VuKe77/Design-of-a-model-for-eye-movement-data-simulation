@@ -8,12 +8,14 @@ function [SIM] = simulate_signal(Tmax,Fs,noise)
 %     SIM - struktura koja sadrzi sledece informacije
 %         SIM.SIGNALS.t - vremenska osa simuliranog signala
 %         SIM.SIGNALS.AMP - amplituda signala pokreta ociju
-%         SIM.SIGNALS.VEL - brzina promene amplitude signala pokreta ociju
+%         SIM.SIGNALS.VEL - apsolutna brzina promene amplitude signala pokreta ociju
 % 
 %         SIM.PARAMS.amplitudes - amplitude simuliranih sakada
 %         SIM.PARAMS.peak_vals - maskimalne brzine simuliranih sakada
+%         SIM.PARAMS.peak_pos - pozicije pikova
 %         SIM.PARAMS.durations - trajanja simuliranih sakada
 %         SIM.PARAMS.gaze_times - trajanja fiksacija u s 
+
 
 
 % ucitavanje modela glavnih sekvenci
@@ -44,6 +46,7 @@ peak_vals = [];
 gaze_times = [];
 onsets = [];
 offsets = [];
+peak_pos = [];
 t_last = 0;
 E0 = 0;
 
@@ -74,7 +77,7 @@ while true
   
     
     %formiranje sakade
-    [sacc, t1, amplitude] = trajectory_fit(Vmax,td,E0,Emax,Fs,t_last);
+    [sacc,t1, amplitude] = trajectory_fit(Vmax,td,E0,Emax,Fs,t_last);
     td = length(sacc)/Fs;
     onsets = [onsets t_last];
     %edge case
@@ -84,11 +87,14 @@ while true
         sacc_velocity = [sacc_velocity zeros(1,length(t)-length(sacc_velocity))];
         break
     end 
+    % saccade generated, increase time
     t_last = t_last+td;
-    offsets = [offsets t_last];
+    offsets = [offsets t_last+1/Fs]; %podrazumeva se da je kraj prvi odbirak koji pada na nulu
     sacc_amp = abs(amplitude-E0);
     E0 = amplitude;
     sacc1 = central_diff(sacc,Ts);
+    [Vmax,Vmax_pos] = max(abs(sacc1));
+    Vmax_pos = t1(Vmax_pos+1);
     
     %kreiranje fiksacije(pauze)
     pause = random(model_gaze)/1000;
@@ -111,6 +117,7 @@ while true
     %monitor
     amplitudes = [amplitudes sacc_amp];
     peak_vals = [peak_vals Vmax];
+    peak_pos = [peak_pos Vmax_pos];
     durations = [durations td];
     gaze_times = [gaze_times pause/Fs];
 end
@@ -142,6 +149,7 @@ SIM.SIGNALS.VEL = abs(sacc_velocity);
 
 SIM.PARAMS.amplitudes = amplitudes;
 SIM.PARAMS.peak_vals = peak_vals;
+SIM.PARAMS.peak_pos = peak_pos;
 SIM.PARAMS.durations = durations;
 SIM.PARAMS.gaze_times = gaze_times;
 SIM.PARAMS.onsets = onsets;

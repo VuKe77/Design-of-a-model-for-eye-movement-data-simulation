@@ -17,6 +17,7 @@ SIM2 = simulate_signal(Tmax,Fs,noise);
 t = SIM1.SIGNALS.t;
 onset_idx = find_indices(SIM1.PARAMS.onsets,t);
 offset_idx = find_indices(SIM1.PARAMS.offsets,t);
+peakpos_idx = find_indices(SIM1.PARAMS.peak_pos,t);
 
 figure
     subplot(2,1,1)
@@ -32,8 +33,10 @@ figure
         plot(t, SIM1.SIGNALS.VEL)
         plot(SIM1.PARAMS.onsets,SIM1.SIGNALS.VEL(onset_idx),'x')
         plot(SIM1.PARAMS.offsets,SIM1.SIGNALS.VEL(offset_idx),'o')
+        plot(SIM1.PARAMS.peak_pos, SIM1.PARAMS.peak_vals,'*')
         ylabel("Apsolutna brzina promene s.v.u[\circ/s]")
         xlabel("Vreme[s]")
+        legend(["signal", "maksimum","pocetak","kraj"])
      
 
     
