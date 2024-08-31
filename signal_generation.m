@@ -7,7 +7,7 @@ clear all
 
 
 %% simulacija signala pokreta ociju
-rng(42)
+%rng(42) for debugging
 Tmax = 10; %duzina simuliranog signala
 Fs = 1000; %frekvencija odabiranja 
 noise = 0;

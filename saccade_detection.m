@@ -86,7 +86,7 @@ figure()
 
 %inicijalizacija praga
 PT = 100 + 200*rand(1);
-PT = 200; %za diplomski, kako bi rezultati bili konzistentni
+%PT = 200; %za diplomski, kako bi rezultati bili konzistentni
 run_flag = true;
 iter = 0;
 PTs = [];

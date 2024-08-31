@@ -91,6 +91,7 @@ while true
     onsets = [onsets t_last];
     t_last = t_last+td;
     offsets = [offsets t_last+1/Fs]; %podrazumeva se da je kraj prvi odbirak koji pada na nulu
+    
     sacc_amp = abs(amplitude-E0);
     E0 = amplitude;
     sacc1 = central_diff(sacc,Ts);
@@ -119,7 +120,7 @@ while true
     amplitudes = [amplitudes sacc_amp];
     peak_vals = [peak_vals Vmax];
     peak_pos = [peak_pos Vmax_pos];
-    durations = offsets-onsets;
+    durations = [durations duration];
     gaze_times = [gaze_times pause/Fs];
 end
 
