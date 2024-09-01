@@ -11,15 +11,15 @@ Shared programs are free software: you can redistribute them and/or modify them 
 Please, report any bugs to the Authors listed in the Contacts.
 The repository contains the following code:
 
-1) saccade_detection.m - MATLAB code for saccade detection and extraction of statistical features.
-2) model_fitting.m - MATLAB code for Code for statistical processing of signal parameters of interest, modeling their distributions and modeling main sequences of saccadic eye movements.
-3) simulate_signal.m - MATALB code for simulating eye movement signal.
-4) trajectory_fit.m - MATLAB code for fitting a saccade trajectory using Hill's equation.
-5) signal_generation.m - MATLAB code for generating a simulated eye movement signal, followed by applying a detection algorithm to the simulated signal.
-6) remove_impulse_noise.m - MATLAB code for removing impulse noise from a raw signal (downloaded from the [GAZEBAZE data repository](10.1038/s41597-021-00959-y)).
-7) modelPeak.mat - MAT file containing the main sequence model (relationship between saccade amplitude and peak velocity).
-8) modelDuration.mat - MAT file containing the main sequence model (relationship between saccade amplitude and duration).
-9) gazePDF.mat - MAT file containing a model of the fixation duration distribution.
+1) [saccade_detection.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/saccade_detection.m) - MATLAB code for saccade detection and extraction of statistical features.
+2) [model_fitting.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/model_fitting.m) - MATLAB code for Code for statistical processing of signal parameters of interest, modeling their distributions and modeling main sequences of saccadic eye movements.
+3) [simulate_signal.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/simulate_signal.m) - MATALB code for simulating eye movement signal.
+4) [trajectory_fit.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/trajectory_fit.m) - MATLAB code for fitting a saccade trajectory using Hill's equation.
+5) [signal_generation.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/signal_generation.m) - MATLAB code for generating a simulated eye movement signal, followed by applying a detection algorithm to the simulated signal.
+6) [remove_impulse_noise.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/remove_impulse_noise.m) - MATLAB code for removing impulse noise from a raw signal (downloaded from the [GAZEBAZE data repository](10.1038/s41597-021-00959-y)).
+7) [modelPeak.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/modelPeak.mat) - MAT file containing the main sequence model (relationship between saccade amplitude and peak velocity).
+8) [modelDuration.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/modelDuration.mat) - MAT file containing the main sequence model (relationship between saccade amplitude and duration).
+9) [gazePDF.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/gazePDF.mat) - MAT file containing a model of the fixation duration distribution.
 10) ampPDF.mat - MAT file containing a model of the saccade amplitude distribution.
 11) MA_filter.mat - MATLAB code for performing moving average filtering of a signal.
 12) central_diff.m - MATLAB code for calculating the first derivative of a signal using the central difference method.
