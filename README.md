@@ -40,7 +40,7 @@ The MATLAB code is provided without any guarantee and it is not intended for med
 
 ## How to cite this repository?
 If you find provided code useful for your own research and teaching class, please cite the following references:
-1) V. Spasojević, S. Stokanović, I. Tanasković, J. Sodnik, N. Miljković, "Design of a model for eye movement data simulation", GitHub repository, https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation, 2024.
+1) Spasojević, V., Stokanović, S., Tanasković, I., Sodnik, J., & Miljković, N. (2024). Design of a model for eye movement data simulation, GitHub code repository, https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation
 
 ## Contact
 Vukašin Spasojević ([spasojevic.vukasin8@gmail.com](mailto:spasojevic.vukasin8@gmail.com))
