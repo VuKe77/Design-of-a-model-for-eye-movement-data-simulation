@@ -15,7 +15,7 @@ The repository contains the following code:
 3) [simulate_signal.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/simulate_signal.m) - MATALB code for simulating eye movement signal.
 4) [trajectory_fit.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/trajectory_fit.m) - MATLAB code for fitting a saccade trajectory using Hill's equation.
 5) [signal_generation.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/signal_generation.m) - MATLAB code for generating a simulated eye movement signal, followed by applying a detection algorithm to the simulated signal.
-6) [remove_impulse_noise.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/remove_impulse_noise.m) - MATLAB code for removing impulse noise from a raw signal (downloaded from the [GAZEBAZE data repository](10.1038/s41597-021-00959-y)).
+6) [remove_impulse_noise.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/remove_impulse_noise.m) - MATLAB code for removing impulse noise from a raw signal (downloaded from the GazeBase data repository [[1](https://doi.org/10.1038/s41597-021-00959-y)-[2](https://doi.org/10.6084/m9.figshare.12912257)]).
 7) [modelPeak.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/modelPeak.mat) - MAT file containing the main sequence model (relationship between saccade amplitude and peak velocity).
 8) [modelDuration.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/modelDuration.mat) - MAT file containing the main sequence model (relationship between saccade amplitude and duration).
 9) [gazePDF.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/gazePDF.mat) - MAT file containing a model of the fixation duration distribution.
@@ -34,6 +34,7 @@ The MATLAB code is provided without any guarantee and it is not intended for med
 
 ## References
 1) Griffith, H., Lohr, D., Abdulin, E., & Komogortsev, O. (2021). GazeBase, a large-scale, multi-stimulus, longitudinal eye movement dataset. Scientific Data, 8(1), 184. [https://doi.org/10.1038/s41597-021-00959-y](https://doi.org/10.1038/s41597-021-00959-y)
+2) Griffith, H., Lohr, D. & Komogortsev, O. V. GazeBase data repository. figshare [https://doi.org/10.6084/m9.figshare.12912257](https://doi.org/10.6084/m9.figshare.12912257) (2021).
 
 ## How to cite this repository?
 If you find provided code useful for your own research and teaching class, please cite the following references:
