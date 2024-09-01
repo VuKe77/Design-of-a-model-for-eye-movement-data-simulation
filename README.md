@@ -4,10 +4,12 @@ The initial version of the presented algorithm was developed for the Bachelor Th
 
 ## GitHub Repository Contents
 
-### Code
+### License
 Shared programs are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. These programs are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with these programs. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
 
-Please, report any bugs to the Authors listed in the Contacts.
+Please, report any bugs to the Author listed in the [Contact section](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation?tab=readme-ov-file#contacts).
+
+### Code
 The repository contains the following code:
 
 1) [saccade_detection.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/saccade_detection.m) - MATLAB code for saccade detection and extraction of statistical features.
