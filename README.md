@@ -30,12 +30,15 @@ The repository contains the following code:
 17) [FIXED_SQRT.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/FIXED_SQRT.m) - MATLAB code for fixed_sqrt model.
 18) [LICENSE file](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/LICENSE) - containing GNU General Public License v3.0
 
-### Data
-
-### Disclaimer
+## Disclaimer
 The MATLAB code is provided without any guarantee and it is not intended for medical purposes.
 
 ## References
 1) Griffith, H., Lohr, D., Abdulin, E., & Komogortsev, O. (2021). GazeBase, a large-scale, multi-stimulus, longitudinal eye movement dataset. Scientific Data, 8(1), 184. [https://doi.org/10.1038/s41597-021-00959-y](https://doi.org/10.1038/s41597-021-00959-y)
 
-## Contacts
+## How to cite this repository?
+If you find provided code useful for your own research and teaching class, please cite the following references:
+1) V. Spasojević, S. Stokanović, I. Tanasković, J. Sodnik, N. Miljković, "Design of a model for eye movement data simulation", GitHub repository, https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation, 2024.
+
+## Contact
+Vukašin Spasojević ([spasojevic.vukasin8@gmail.com](mailto:spasojevic.vukasin8@gmail.com))
