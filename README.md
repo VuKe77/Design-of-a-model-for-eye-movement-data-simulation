@@ -1,7 +1,6 @@
 
 # Design of a model for eye movement data simulation
-The initial version of the presented algorithm was developed for the Bachelor Thesis titled "Design of a model for eye movement data simulation", authored by Vukašin Spasojević, and defended under the mentorship of [Assoc. Prof. Nadica Miljković](https://www.etf.bg.ac.rs/en/faculty/staff/nadica-miljkovic-4323) on August 27, 2024 at the [University of Belgrade - School of Electrical Engineering](https://www.etf.bg.ac.rs/en).
-NAPOMENA: Nije dovrsen readme fajl... Uskoro..
+The initial version of the presented algorithm was developed for the Bachelor Thesis titled "Design of a model for eye movement data simulation" authored by Vukašin Spasojević and defended under the mentorship of [Assoc. Prof. Nadica Miljković](https://www.etf.bg.ac.rs/en/faculty/staff/nadica-miljkovic-4323) on August 27, 2024 at the [University of Belgrade - School of Electrical Engineering](https://www.etf.bg.ac.rs/en).
 
 ## GitHub Repository Contents
 
@@ -30,7 +29,7 @@ The repository contains the following code:
 17) [FIXED_SQRT.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/FIXED_SQRT.m) - MATLAB code for fixed_sqrt model.
 18) [LICENSE file](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/LICENSE) - containing GNU General Public License v3.0
 
-## Disclaimer
+### Disclaimer
 The MATLAB code is provided without any guarantee and it is not intended for medical purposes.
 
 ## References
