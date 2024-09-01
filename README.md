@@ -28,6 +28,7 @@ The repository contains the following code:
 15) EXPONENTIAL.m - MATLAB code for exponential model.
 16) SQRT.m - MATLAB code for sqrt model.
 17) FIXED_SQRT.m - MATLAB code for fixed_sqrt model.
+18) LICENSE file - containing GNU General Public License v3.0
 
 ### Data
 
