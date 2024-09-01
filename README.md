@@ -1,6 +1,6 @@
 
 # Design of a model for eye movement data simulation
-This algorithm was developed as a result of my Bachelor Thesis under the mentorship of [Assoc. Prof. Nadica Miljković](https://www.etf.bg.ac.rs/en/faculty/staff/nadica-miljkovic-4323) from the [University of Belgrade - School of Electrical Engineering](https://www.etf.bg.ac.rs/en) defended on August 27, 2024.
+The initial version of the presented algorithm was developed for the Bachelor Thesis titled "Design of a model for eye movement data simulation", authored by Vukašin Spasojević, and defended under the mentorship of [Assoc. Prof. Nadica Miljković](https://www.etf.bg.ac.rs/en/faculty/staff/nadica-miljkovic-4323) on August 27, 2024 at the [University of Belgrade - School of Electrical Engineering](https://www.etf.bg.ac.rs/en).
 NAPOMENA: Nije dovrsen readme fajl... Uskoro..
 
 ## GitHub Repository Contents
