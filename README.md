@@ -19,19 +19,23 @@ The repository contains the following code:
 6) [remove_impulse_noise.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/remove_impulse_noise.m) - MATLAB code for removing impulse noise from a raw signal (downloaded from the [GAZEBAZE data repository](10.1038/s41597-021-00959-y)).
 7) [modelPeak.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/modelPeak.mat) - MAT file containing the main sequence model (relationship between saccade amplitude and peak velocity).
 8) [modelDuration.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/modelDuration.mat) - MAT file containing the main sequence model (relationship between saccade amplitude and duration).
-9) [gazePDF.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/gazePDF.mat) - MAT file containing a model of the fixation duration distribution.
-10) ampPDF.mat - MAT file containing a model of the saccade amplitude distribution.
-11) MA_filter.mat - MATLAB code for performing moving average filtering of a signal.
-12) central_diff.m - MATLAB code for calculating the first derivative of a signal using the central difference method.
-13) find_indices.m - MATLAB code that finds the indices of values in y that are closest to each value in x.
-14) hist_normal.m - MATLAB code for calculating and plotting histogram of the signal.
-15) EXPONENTIAL.m - MATLAB code for exponential model.
-16) SQRT.m - MATLAB code for sqrt model.
-17) FIXED_SQRT.m - MATLAB code for fixed_sqrt model.
-18) LICENSE file - containing GNU General Public License v3.0
+9) [gazePDF.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/gazePDF.mat) - MAT file containing a model of the fixation duration distribution.
+10) [ampPDF.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/ampPDF.mat) - MAT file containing a model of the saccade amplitude distribution.
+11) [MA_filter.mat](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/MA_filter.m) - MATLAB code for performing moving average filtering of a signal.
+12) [central_diff.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/central_diff.m) - MATLAB code for calculating the first derivative of a signal using the central difference method.
+13) [find_indices.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/find_indices.m) - MATLAB code that finds the indices of values in y that are closest to each value in x.
+14) [hist_normal.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/hist_normal.m) - MATLAB code for calculating and plotting histogram of the signal.
+15) [EXPONENTIAL.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/EXPONENTIAL.m) - MATLAB code for exponential model.
+16) [SQRT.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/SQRT.m) - MATLAB code for sqrt model.
+17) [FIXED_SQRT.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/FIXED_SQRT.m) - MATLAB code for fixed_sqrt model.
+18) [LICENSE file](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/LICENSE) - containing GNU General Public License v3.0
 
 ### Data
 
-### Data
+### Disclaimer
+The MATLAB code is provided without any guarantee and it is not intended for medical purposes.
+
+## References
+1) Griffith, H., Lohr, D., Abdulin, E., & Komogortsev, O. (2021). GazeBase, a large-scale, multi-stimulus, longitudinal eye movement dataset. Scientific Data, 8(1), 184. [https://doi.org/10.1038/s41597-021-00959-y](https://doi.org/10.1038/s41597-021-00959-y)
 
 ## Contacts
