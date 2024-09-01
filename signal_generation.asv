@@ -7,9 +7,9 @@ clear all
 
 
 %% simulacija signala pokreta ociju
-%rng(4)% for debugging
+%rng(42) for debugging
 Tmax = 10; %duzina simuliranog signala
-Fs = 150; %frekvencija odabiranja 
+Fs = 100; %frekvencija odabiranja 
 noise = 0;
 SIM1 = simulate_signal(Tmax,Fs,noise);
 SIM2 = simulate_signal(Tmax,Fs,noise);

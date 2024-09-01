@@ -79,9 +79,10 @@ if  y1(end)>=0 && length(y)>1
         y(i) = y(i-1) + y1(i)*(1/Fs);
     end
 end
-A = y(end);
 %resampling
 y = y(1:round(1000/Fs):end);
+t =t(1:round(1000/Fs):end);
+A = y(end);
 y1 = central_diff(y,1/Fs); %added
 %save position of maximum and maximum
 %[Vmax,Vmax_idx] = max(abs(y1));
