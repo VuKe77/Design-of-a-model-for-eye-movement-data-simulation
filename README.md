@@ -3,7 +3,23 @@
 The initial version of the presented algorithm was developed for the Bachelor Thesis titled "Design of a model for eye movement data simulation" authored by Vukašin Spasojević and defended under the mentorship of [Assoc. Prof. Nadica Miljković](https://www.etf.bg.ac.rs/en/faculty/staff/nadica-miljkovic-4323) on August 27, 2024 at the [University of Belgrade - School of Electrical Engineering](https://www.etf.bg.ac.rs/en).
 
 ## GitHub Repository Contents
-This repository contains MATLAB code for simulating eye movement signals. First, a [detection algorithm](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/saccade_detection.m) is applied to extract the statistical parameters of saccades. Then, Weibull distributions and main sequence models are fitted to these parameters. Saccade amplitude, duration, peak velocity, and fixation duration are sampled from these models and used for signal simulation. Saccades are simulated using Hill's equation. Optionally sampling frequency can be changed and noise can be added to the signal. To simulate the signal, run [signal_generation.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/signal_generation.m).
+This repository contains MATLAB code for simulating eye movement signals. First, a [detection algorithm](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/saccade_detection.m) is applied to extract the statistical parameters of saccades. Then, Weibull distributions and main sequence models are fitted to these parameters. Saccade amplitude, duration, peak velocity, and fixation duration are sampled from these models and used for signal simulation. Saccades are simulated using Hill's equation. Optionally sampling frequency can be changed and noise can be added to the signal. To simulate the signal, use [simulate_signal.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/simulate_signal.m). 
+#### Example:
+```ruby
+Tmax = 10; %length of simulated signal
+Fs = 200; %sampling frequency
+noise = 0;
+SIM1 = simulate_signal(Tmax,Fs,noise);
+
+```
+![git_simuliran_signal](https://github.com/user-attachments/assets/59b4fb37-3d80-4e44-8e8c-b82fa3b89aa5)
+![git_obelezen_signal](https://github.com/user-attachments/assets/fb18c65b-2689-4749-b0a8-7be8328880ae)
+
+
+
+
+
+
 
 ### License
 Shared programs are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. These programs are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with these programs. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
