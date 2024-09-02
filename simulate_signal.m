@@ -135,12 +135,12 @@ sacc_velocity = sacc_velocity(1:length(t));
 figure
     subplot(2,1,1)
         plot(t,sacc_amplitude)
-        ylabel('Amplituda s.v.u[\circ]')
-        title(['Simulacija signala pokreta oka, Fs = ' num2str(Fs) 'Hz'])
+        ylabel('Amplitude - degrees of angle[\circ]')
+        title(['Eye movement signal simulation, Fs = ' num2str(Fs) 'Hz'])
     subplot(2,1,2)
         plot(t,abs(sacc_velocity))
-        xlabel('Vreme[s]')
-        ylabel('Brzina promene s.v.u[\circ/s]')
+        xlabel('Time[s]')
+        ylabel('Absolute angular velocity[\circ/s]')
 %Saving signal and parameters in a structure
 SIM = struct;
 SIM.SIGNALS.t = t;
