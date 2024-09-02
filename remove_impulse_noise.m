@@ -1,26 +1,22 @@
 function [filtered_sig] = remove_impulse_noise(sig,Fs)
-% Algoritam za uklanjanje impulsnog suma koji se javlja u signalu.
-% Pretpostavljen oblik impulsnog suma je  pravougaona cetvrkte, pretpostavlja
-% se da je nasiri impuls trajanja 10ms. Takodje je obradjen slucaj kada se jave 
-% dva impulsna suma uzastopno. Ukoliko ima vise impulsnih sumova uzastopno najbolje
-% je koristiti drugi algoritam
-% 
-% 
-% 
-% Ulaz:
-%     sig - originalan 1D signal 
-%     Fs - frekvencija odabiranja signala
-% Izlaz
-%     filtered_sig - filtriran signal
-%     
-    
+% Algorithm for removing impulse noise that occurs in the signal.
+% The assumed shape of the impulse noise is a rectangular pulse, with a 
+% duration of 10 ms. The algorithm also handles the case where two impulse 
+% noises occur consecutively. If there are more than two consecutive impulse 
+% noises, it is recommended to use a different algorithm.
+
+% INPUT:
+%     sig - original 1D signal
+%     Fs - signal sampling frequency
+% OUTPUT:
+%     filtered_sig - filtered signal
 
 
 filtered_sig=sig;
-window = 10/1000*Fs; %10ms prozor
-T = 5; %prag od 10 stepeni
+window = 10/1000*Fs; %10ms window
+T = 5; % 5 degree threshold
 
-%pronalazenje pocetka i kraja impulsa
+%Finding nosie start and end
 impulse_flag = 0;
 impulse_start = [0];
 impulse_end = [0];
@@ -45,11 +41,11 @@ for i = 2:length(sig)
     end
 
 end
-%ignorisi nule sa pocetka niza
+%ignore zeros from start of the array
 impulse_start = impulse_start(2:end);
 impulse_end = impulse_end(2:end);
 
-% interpolacija izgubljenog dela signala
+%interpolation
 for i=1:length(impulse_start)
     s = impulse_start(i)-1;
     e = impulse_end(i)+1;

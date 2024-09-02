@@ -1,6 +1,6 @@
 function [filterd_signal] = MA_filter(signal,window_length)
-%Izvodi offline MA filtriranje signala sa tačkom centriranom u
-%prozoru koji se koristi za filtriranje. Dužina prozora je u uzorcima[n]
+% Performs offline moving average (MA) filtering of the signal using a window 
+% centered at each point. The window length is specified in samples [n].
 
 filterd_signal = signal;
 half_window = ceil(window_length/2);

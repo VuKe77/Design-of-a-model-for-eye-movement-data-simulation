@@ -1,31 +1,28 @@
 function [y,t,A] = trajectory_fit(Vmax,td,E0,Emax,Fs,tstart)
-%Modelovanje trajektorije sakade Hilovom jednacinom. 
-% Ulaz:
-%     Vmax - maksimalna brina sakade [deg/s]
-%     td - trajanje sakade [s]
-%     E0 - pocetna amplituda sakade [deg]
-%     Emax - krajnja amplituda sakade [deg]
-%     Fs - perioda odabiranja[Hz]
-%     tstart - pocetan trenutak sakade
-% Izlaz:
-%     y - modelovana trajektorija amplitude sakade
-%     t - odgovarajuca vremenska osa
-%     A - ukupna amplituda sakade(razlika izmedju pocetne i krajnje nakon 
-%     procesa modelovanja
+% Modeling saccade trajectory using Hill's equation.
+% Input:
+%     Vmax - maximum saccade velocity [deg/s]
+%     td - saccade duration [s]
+%     E0 - initial saccade amplitude [deg]
+%     Emax - final saccade amplitude [deg]
+%     Fs - sampling frequency [Hz]
+%     tstart - initial time of the saccade
+% Output:
+%     y - modeled saccade amplitude trajectory
+%     t - corresponding time axis
+%     A - total saccade amplitude (difference between the initial and final amplitudes after the modeling process)
 
-%NAPOMENA:Neophodno je da se u istom faju nalaze modeli glavnih sekvenci i
-%funkcije gustina verovatnoce parametara sakada: 'ampPDF.mat','gazePDF.mat',
-%'modelDuration.mat', 'modelPeak.mat'.
+% NOTE: It is necessary to have the main sequence models and probability density functions of saccade parameters in the same file: 'ampPDF.mat', 'gazePDF.mat', 'modelDuration.mat', 'modelPeak.mat'.
 
 
 
-%inicilajizacija algoritma
+%algorithm initialization
 dE = Emax - E0;
 t = 0:0.001:td-0.001; 
 y2 = [];
 E50s = [];
 as = [];
-%algoritam numericki
+%numerical algorithm
 for a=1:0.01:10
     as = [as a];
     a1 = a*((a-1)/(a+1))^((a-1)/a);
@@ -50,16 +47,9 @@ a1 = a*((a-1)/(a+1))^((a-1)/a);
 a2 = (a-1)/(a+1);
 ymax = (Emax-E0)*a1/(1+a2)^2/E50;
 
-% figure
-%     plot(abs(y2-dE))
-%     xlabel("Iteracija[n]")
-%     ylabel("Greška[deg]")
-%     title("Prikaz vrednosti greške kroz iteracije algoritma")
+y1 = central_der(y,1/Fs);
 
-
-
-y1 = central_diff(y,1/Fs);
-
+%Fix discontinuity of y1
 if  y1(end)>=0 && length(y)>1
     %take last 1/4th of signal and perform spline
     idx = length(y1) - round(length(y1)/10);
@@ -83,37 +73,12 @@ end
 y = y(1:round(1000/Fs):end);
 t =t(1:round(1000/Fs):end);
 A = y(end);
-y1 = central_diff(y,1/Fs); %added
-%save position of maximum and maximum
-%[Vmax,Vmax_idx] = max(abs(y1));
 
-% %DEBUG central_deriv
-% y1_s = central_diff(y,1/Fs);
-% figure
-%     hold all
-%     plot(t, y1_s)
-%     plot(t, y1)
-%     legend(["y1_s","y1"])
-    
-
-
-    
-
-
+%Adjust time vector
 switch nargin
     case 6
         t = t+tstart;
-%Save position of maximum
-%Vmax_pos = t(Vmax_idx);
 
-%DEBUG
-% figure
-%     hold all
-%     plot(t,abs(test))
-%     plot(t,abs(y1))
-%     plot(t(Vmax_idx),Vmax,'x')
-%     plot(t(Vmax_idx),Vmax,'o')
-   
 
 
 end

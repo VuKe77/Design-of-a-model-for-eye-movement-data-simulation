@@ -1,4 +1,4 @@
 function [y] = SQRT(x,V)
-%SQRT funckija
+%SQRT model
 y = V*sqrt(x);
 end

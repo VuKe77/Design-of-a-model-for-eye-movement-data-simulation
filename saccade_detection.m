@@ -1,37 +1,36 @@
 function DATA = saccade_detection(raw_data,t)
-%Algoritam za detekciju sakada i izdvajanje statistickih obelezja.
-% Na osnovu horizontalnog stepena vizuelnog ugla se vrsi detekcija sakada
-% inspirisan algoritmom opisanim u radu Nystrom,Holmqvist(2010). 
-% Na kraju se izdvajaju informacije od znacaja i statisticka obelezja sakada
+% Algorithm for saccade detection and extraction of statistical features.
+% Saccade detection is performed based on the horizontal visual angle,
+% inspired by the algorithm described in Nystrom and Holmqvist (2010).
+% Finally, relevant information and statistical features of saccades are extracted.
 
-%Ulaz: 
-%        data - 2D vektor cije su kolone vrednosti horizontalnog i
-%        vertikalnog stepena vizuelnog ugla
-%        t - vremenska osa
-%Izlaz:
-%        DATA - struktura koja sadrzi sledece informacije
-%            DATA.GAZE.t - vremenska osa [s]
-%            DATA.GAZE.amp - apsolutna amplituda ugla pomeraja ociju [deg]
-%            DATA.GAZE.vel - brzina pomeraja ociju [deg/s]
+% INPUT:
+%     data - 2D vector where columns represent horizontal and vertical visual angles
+%     t - time axis
+% OUTPUT:
+%     DATA - a structure containing the following information:
+%         DATA.GAZE.t - time axis [s]
+%         DATA.GAZE.amp - absolute amplitude of eye movement angle [deg]
+%         DATA.GAZE.vel - eye movement velocity [deg/s]
 % 
-%            DATA.SACC.peak_vals - pikovi brzine sakada [deg/s]
-%            DATA.SACC.peak_idxs - indeksi pikova brzina sakada
-%            DATA.SACC.onsets - indeksi pocetka sakada
-%            DATA.SACC.offsets - indeksi krajeva sakada
-%            DATA.SACC.durations - trajanje sakada [ms]
-%            DATTA.SACC.gaze_times - trajanje fiksacije ociju/ vreme izmedju sakada [ms]
-%            DATA.SACC.amplitudes - amplitude sakada [deg]
-%            DATA.SACC.traj - niz trajektorija sakada [deg]
-%            DATA.SACC.traj_t - niz vremena koja odgovaraju trajektorijama sakada [s]
+%         DATA.SACC.peak_vals - peak saccade velocities [deg/s]
+%         DATA.SACC.peak_idxs - indices of saccade velocity peaks
+%         DATA.SACC.onsets - indices of saccade onsets
+%         DATA.SACC.offsets - indices of saccade offsets
+%         DATA.SACC.durations - saccade durations [ms]
+%         DATA.SACC.gaze_times - fixation durations/intervals between saccades [ms]
+%         DATA.SACC.amplitudes - saccade amplitudes [deg]
+%         DATA.SACC.traj - array of saccade trajectories [deg]
+%         DATA.SACC.traj_t - array of times corresponding to saccade trajectories [s]
 
-%definisanje konstanti vezanih za postavku eksperimenta
+%defining constants related to the experiment setup
 Fs = 1000;
 resolution_pix = [1680, 1050];
 center = [840 525+127.2727];
 resolution_cm = [47.4, 29.7];
 distance = 55;
 ratio = resolution_cm./resolution_pix;
-%visualizacija pogleda na ekran
+%visualization of the subject screen view
 
 deg_x = raw_data(:,1);
 deg_y = raw_data(:,2);
@@ -42,15 +41,15 @@ raw_y = tan(pi/180*deg_y)*distance/ratio(2)+center(2);
 
 figure()
 plot(raw_x,raw_y)
-title('Koordinate pogleda na ekranu')
-xlabel('x[piksel]')
-ylabel('y[piksel]')
+title('Coordinates of the screen view')
+xlabel('x[pix]')
+ylabel('y[pix]')
 %% vizualizacija 
 figure
     plot(t,deg_x)
-    ylabel('Amplituda s.v.u[\circ]')
-    xlabel('Vreme[s]')
-    title(['Originalan signal pokreta oka'])
+    ylabel('Amplitude d.v.a[\circ]')
+    xlabel('Time[s]')
+    title(['Original signal'])
 
 %% filtriranje
 
@@ -59,34 +58,34 @@ filt_y = MA_filter(deg_y, floor(Fs/1000*5));
 
 figure()
     hold on;
-    title('Filtriranje horizontalnog s.v.u MA filtrom ')
+    title('Filtering of horizontal d.v.a using MA filter ')
     plot(t,deg_x)
     plot(t,filt_x)
-    xlabel('Vreme[s]')
-    ylabel('Amplituda[\circ]')
-    legend(["originalan signal", "filtriran signal"])
+    xlabel('Time[s]')
+    ylabel('Amplitude[\circ]')
+    legend(["original signal", "filtrated signal"])
     hold off;
 
-%% racunaje pozicije(amplitude) i brzine pomeraja ocne jabucice
-%analiza se vrsi samo na horizontalnim sakadama
+%% calculates the position (amplitude) and speed of eyeball movement
+%analysis is performed only on horizontal saccades
 gaze_amp = filt_x; 
-gaze_vel = abs(central_diff(gaze_amp',1/Fs));
+gaze_vel = abs(central_der(gaze_amp',1/Fs));
 figure()
     plot(t,gaze_amp)
-    title("Amplituda stepena vizuelnog ugla")
-    xlabel('Vreme[s]')
-    ylabel('Amplituda[\circ]')
+    title("Amplitude of degree of visual angle")
+    xlabel('Time[s]')
+    ylabel('Amplitude[\circ]')
 figure()
-    title("Apsolutna vrednost brzine promene s.v.u")
+    title("Absolute angular velocity")
     hold all
     plot(t,abs(gaze_vel))
-    xlabel('Vreme[s]')
-    ylabel('Amplituda[\circ/s]')
-%% ALGORITAM ZA DETKCIJU SAKADA %%
+    xlabel('Time[s]')
+    ylabel('Amplitude[\circ/s]')
+%% Saccade detection algorithm %% 
 
-%inicijalizacija praga
+%Threshold initialization
 PT = 100 + 200*rand(1);
-%PT = 200; %za diplomski, kako bi rezultati bili konzistentni
+%PT = 200; %for bachlor, consistancy
 run_flag = true;
 iter = 0;
 PTs = [];
@@ -100,31 +99,31 @@ while run_flag
     PT = noise_mean + 6*noise_std;
     if abs(PT-PT_old)<1
         run_flag = false;
-        disp(['Algoritam je konvergirao: PT = ' num2str(PT,4)])
+        disp(['Algorithm converged: PT = ' num2str(PT,4)])
     end      
 end
 
-%Algoritam konvergira ka istoj vrednosti veoma brzo!
+%Algorithm converges to the same value very fast
 figure()
     plot(PTs)
-    ylabel("Vrednost praga PT [\circ/s]")
-    xlabel("Iteracija[n]")
-    title("Konvergencija algoritma za detekciju praga")
+    ylabel("Threshold value PT [\circ/s]")
+    xlabel("Iteration[n]")
+    title("Threshold algorithm convergence")
     curtick = get(gca, 'XTick');
     set(gca, 'XTick', unique(round(curtick)))
     
 
-%% Detekcija sakada
-%detekcija pikova
+%% Saccade detection
+%detecting peaks
 [peak_vals,peak_idxs] = findpeaks(gaze_vel,"MinPeakDistance",Fs/1000*40,"MinPeakHeight", PT);
 
     
-%detekcija onset-a
+%onset detection 
 T_onset = noise_mean + 3*noise_std;
 onset_idxs = [];
 for i=1:length(peak_idxs)
-    j=1;
-    %iterativno nalazenje prvog lokalnog minimuma levo od pika
+    j=1; 
+    %iteratively finding the first local minimum to the left of the peak
     while 1
        if peak_idxs(i)-j-1 == 0 %edge case
            onset_idxs = [onset_idxs 1];
@@ -140,7 +139,7 @@ for i=1:length(peak_idxs)
         
     end
 end
-%detekcija offseta
+%offseta detection
 noise_window = floor(Fs/1000*40); %40ms window
 a=0.7;
 b=0.3;
@@ -149,7 +148,7 @@ for i = 1:length(peak_idxs)
     local_noise = mean(gaze_vel(max(peak_idxs(i)-noise_window,1): peak_idxs(i)));
     T_offset = a*T_onset + b*local_noise;
     j=1;
-    %iterativno nalazenje prvog lokalnog minimuma desno od pika
+    %iteratively finding the first local minimum to the right of the peak
     while 1
         if peak_idxs(i)+j+1>length(gaze_vel) %edge case
             offset_idxs = [offset_idxs length(gaze_vel)]; 
@@ -174,28 +173,23 @@ offset_vals = gaze_vel(offset_idxs);
 onset_vals = gaze_vel(onset_idxs);
 durations = offset_idxs-onset_idxs;
 valid = ones(1,length(durations));
-%Odbacivanje nepravilnih sakada 
+%Rejection of irregular saccades
 min_duration=ceil(Fs/1000*10);
-valid(durations<min_duration)=0;%Sakade koje su krace od 10ms se odbacuju
-valid(peak_vals>1000) = 0; %sakade vece od 1000 deg/s nisu moguce
+valid(durations<min_duration)=0;%Saccades shorter than 10ms are discarded
+valid(peak_vals>1000) = 0; %Saccades higher than 1000 deg/s are not possible
 
 
-
-
-
-
-
-%problem gde se ne pronadje offset sakade lepo
+%problem where the saccade offset is not found well
 for i=2:length(valid)
     if valid(i)==0
         continue
     end
-    if peak_idxs(i)<offset_idxs(i-1) %kako bismo izbacili pikove koji su pogresni
+    if peak_idxs(i)<offset_idxs(i-1) %finding invalid peaks 
         valid(i)=0;
         
     end
 end
-%filtriranje validnih podataka
+%filtering valid data
 disp(['Excluded number of samples:' num2str(length(find(valid==0)))])
 peak_idxs = peak_idxs(valid==1);
 onset_idxs = onset_idxs(valid==1);
@@ -211,30 +205,30 @@ gaze_times =onset_idxs(2:end)- offset_idxs(1:end-1);
 durations = durations/Fs*1000;
 gaze_times = gaze_times/Fs*1000;
 
-%vizualizacija    
+%visualize    
 figure()
     hold all
-    title("Apsolutna vrednost brzine promene s.v.u")
+    title("Absolute angular velocity")
     plot(t,gaze_vel)
     plot(t(peak_idxs),peak_vals,'x')
     plot(t(onset_idxs),onset_vals,'o')
     plot(t(offset_idxs),offset_vals,'*')
-    xlabel('Vreme[s]')
-    ylabel('Brzina[\circ/s]')
-    legend(["signal","maksimumi", "pocetak", "kraj"])
+    xlabel('Time[s]')
+    ylabel('Velocity[\circ/s]')
+    legend(["signal","peaks", "start", "end"])
     hold off;
 figure()
     hold all
-    title("Amplituda s.v.u")
+    title("Amplitude of d.v.a")
     plot(t,gaze_amp)
     plot(t(onset_idxs),gaze_amp(onset_idxs),'o')
     plot(t(offset_idxs),gaze_amp(offset_idxs),'*')
-    xlabel('Vreme[s]')
-    ylabel('Amplituda[\circ/s]')
-    legend(["signal", "pocetak", "kraj"])
+    xlabel('Time[s]')
+    ylabel('Angular velocity[\circ/s]')
+    legend(["signal", "start", "end"])
     hold off;
     
-%izdvajanje trajektorija sakada
+%Taking saccades trajectories
 sacc_traj = {};
 sacc_traj_t = {};
 for i=1:length(peak_idxs)
@@ -243,7 +237,7 @@ for i=1:length(peak_idxs)
 end
     
     
-%% racunanje statisickih obelezja
+%% Calculating statistical parameters
 sacc_amplitudes = abs(gaze_amp(onset_idxs)'-gaze_amp(offset_idxs)');
 
 %output
