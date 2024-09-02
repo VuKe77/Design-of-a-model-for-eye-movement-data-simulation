@@ -1,11 +1,10 @@
 function dx = central_diff(x,Ts)
-% Racuna centralni diferencijal vektora x
-% Ulaz
-%     x - ulazni 1D vektor
-%     Ts - perioda odabiranja
-% Izlaz
-%     dx - centralni diferencijal
-
+% Computes the central difference of the vector x.
+% INPUT:
+%     x - input 1D vector
+%     Ts - sampling period
+% OUTPUT:
+%     dx - central difference
 if length(x)==1
     dx = 0;
     return 
