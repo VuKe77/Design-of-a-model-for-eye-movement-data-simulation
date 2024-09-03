@@ -13,9 +13,9 @@ noise = 0; % selected level of noise
 SIM1 = simulate_signal(Tmax,Fs,noise); % signal simulation
 
 ```
-# ![git_simuliran_signal](https://github.com/user-attachments/assets/59b4fb37-3d80-4e44-8e8c-b82fa3b89aa5)
+<!-- ![git_simuliran_signal](https://github.com/user-attachments/assets/59b4fb37-3d80-4e44-8e8c-b82fa3b89aa5) -->
 <img src="https://github.com/user-attachments/assets/59b4fb37-3d80-4e44-8e8c-b82fa3b89aa5" width="1000">
-# ![git_obelezen_signal](https://github.com/user-attachments/assets/fb18c65b-2689-4749-b0a8-7be8328880ae)
+<!-- ![git_obelezen_signal](https://github.com/user-attachments/assets/fb18c65b-2689-4749-b0a8-7be8328880ae) -->
 <img src="https://github.com/user-attachments/assets/fb18c65b-2689-4749-b0a8-7be8328880ae" width="1000">
 
 
