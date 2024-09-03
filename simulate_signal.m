@@ -38,7 +38,7 @@ t = 0:Ts:Tmax-Ts;
 sacc_amplitude = [0];
 sacc_velocity = [0];
 
-%Lista za monitoring parametara
+%list of monitored parameters
 amplitudes = [];
 durations = [];
 peak_vals = [];
@@ -126,12 +126,12 @@ end
 sacc_amplitude = sacc_amplitude + randn(1,length(sacc_amplitude))*noise;
 sacc_velocity = central_der(sacc_amplitude,Ts);
 
-%A bug appears when calculating specifically t_last=9.9..9 instead of 10,
+%A bug appears when calculating specifically t_last = 9.9..9 instead of 10,
 %so this is a mechanism to keep vectors the same length
 sacc_amplitude = sacc_amplitude(1:length(t));
 sacc_velocity = sacc_velocity(1:length(t));
 
-%visualization
+%Visualization
 figure
     subplot(2,1,1)
         plot(t,sacc_amplitude)
@@ -141,6 +141,7 @@ figure
         plot(t,abs(sacc_velocity))
         xlabel('Time[s]')
         ylabel('Absolute angular velocity[\circ/s]')
+
 %Saving signal and parameters in a structure
 SIM = struct;
 SIM.SIGNALS.t = t;
