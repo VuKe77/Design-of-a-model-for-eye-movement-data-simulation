@@ -56,6 +56,7 @@ The MATLAB code is provided without any guarantee and it is not intended for med
 ## How to cite this repository?
 If you find provided code useful for your own research and teaching class, please cite the following references:
 1) Spasojević, V., Stokanović, S., Tanasković, I., Sodnik, J., & Miljković, N. (2024). Design of a model for eye movement data simulation, GitHub code repository, https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation
+2) Stokanović, S., Spasojević, V., Tanasković, I., Sodnik, J., & Miljković, N. (2024). Computational Method for Saccade Generation, under review 
 
 ## Contact
 Vukašin Spasojević ([spasojevic.vukasin8@gmail.com](mailto:spasojevic.vukasin8@gmail.com))
