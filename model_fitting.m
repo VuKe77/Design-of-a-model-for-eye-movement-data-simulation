@@ -6,7 +6,7 @@ close all
 clc
 clear all
 
-%%Data loading
+%% Data loading
 data_path = "S_1001_S1_VD1.csv"; 
 T = csvread(data_path,1,0);
 Fs = 1000;
@@ -63,8 +63,7 @@ figure
 
 
 
-%% izdvajanje statistickih obelezja i sekvenci
-
+%% Extraction of features and sequences
 DATA = saccade_detection(raw_data,t);
 %%
 
@@ -105,7 +104,7 @@ figure
         hold off;
 a1 = autocorr(DATA.SACC.durations);
 
-%% Histogrami statistickih parametara
+%% Histograms of statistical parameters
 figure
     histogram(DATA.SACC.amplitudes,'FaceColor','b')
     xlabel('Saccades amplitude[\circ]');
@@ -129,7 +128,7 @@ figure
     title('Fixation duration histogram');
 
 
-%% main sequence modeling - velocity peak
+%% Main sequence modeling - velocity peak
 %FIXED SQRT
 ft_fsqrt = fittype( 'FIXED_SQRT(x,V,VA,Ath)','independent', 'x','coefficients','V','problem',{'VA','Ath'});
 %SQRT
@@ -141,7 +140,7 @@ options_fsqrt = fitoptions('Method','NonlinearLeastSquares','Algorithm','Levenbe
 options_sqrt = options_fsqrt;
 options_exp = fitoptions('Method','NonlinearLeastSquares','Algorithm','Levenberg-Marquardt','StartPoint',[300,0,6]);
 
-%Finding the mean value of the peak for an amplitude of 1deg
+%Finding the mean value of the peak for an amplitude of 1 degree
 Ath=1;
 mask = (DATA.SACC.amplitudes<=Ath);
 mask_upper1 = find(mask==0);
@@ -151,7 +150,7 @@ VA = mean(DATA.SACC.peak_vals(mask));
 [f_sqrt, gof_sqrt] = fit(DATA.SACC.amplitudes', DATA.SACC.peak_vals',ft_sqrt,options_sqrt);
 [f_exp, gof_exp] = fit(DATA.SACC.amplitudes', DATA.SACC.peak_vals',ft_exp,options_exp);
 
-% creating models using symbolic functions
+%Creating models using symbolic functions
 model_fsqrt = @(x) f_fsqrt.VA + f_fsqrt.V*sqrt(x-f_fsqrt.Ath);
 model_sqrt = @(x) f_sqrt.V*sqrt(x);
 model_exp = @(x) f_exp.V*(1-exp(-(x-f_exp.A0)/f_exp.k));
@@ -218,7 +217,7 @@ figure()
         ylabel('Amplitude[a.u]')
         title("Autocorrelation function of residual graph")
     
-% visualize
+% Visualization
 figure()
     title({'FIXED SQRT',['R^2:' num2str(gof_fsqrt.rsquare,3) ', RMSE:' num2str(gof_fsqrt.rmse,3) ', MAPE:' num2str(mape_fsqrt,3)] })
     hold all;
@@ -247,11 +246,11 @@ figure()
     legend(["Uzorci","Model"])
     grid on;
     
-% save best result - EXPONENTIAL FUNCTION
+% Saving the best result - EXPONENTIAL FUNCTION
 best_model = model_exp;
 save('modelPeak.mat', 'best_model');
    
-%% main sequence modeling - saccade duration
+%% Main sequence modeling - saccade duration
 %FIXED SQRT
 ft_fsqrt = fittype( 'FIXED_SQRT(x,V,VA,Ath)','independent', 'x','coefficients','V','problem',{'VA','Ath'});
 %SQRT
@@ -263,7 +262,7 @@ options_fsqrt = fitoptions('Method','NonlinearLeastSquares','Algorithm','Levenbe
 options_sqrt = options_fsqrt;
 options_exp = fitoptions('Method','NonlinearLeastSquares','Algorithm','Levenberg-Marquardt','StartPoint',[300,0,6]);
 
-%Finding the mean value of the peak for an amplitude of 1deg
+%Finding the mean value of the peak for an amplitude of 1 degree
 Ath=1;
 mask = (DATA.SACC.amplitudes<=Ath);
 mask_upper1 = find(mask==0);
@@ -273,7 +272,7 @@ VA = mean(DATA.SACC.durations(mask));
 [f_sqrt, gof_sqrt] = fit(DATA.SACC.amplitudes', DATA.SACC.durations',ft_sqrt,options_sqrt);
 [f_exp, gof_exp] = fit(DATA.SACC.amplitudes', DATA.SACC.durations',ft_exp,options_exp);
 
-%creating models using symbolic functions
+%Creating models using symbolic functions
 model_fsqrt1 = @(x) f_fsqrt.VA + f_fsqrt.V*sqrt(x-f_fsqrt.Ath);
 model_sqrt1 = @(x) f_sqrt.V*sqrt(x);
 model_exp1 = @(x) f_exp.V*(1-exp(-(x-f_exp.A0)/f_exp.k));
@@ -339,12 +338,9 @@ figure()
         xlabel('sample[k]')
         ylabel('Amplitude[a.u]')
         title("Autocorrelation function of residual graph")
-    
-    
-    
 
 
-% visualize
+% Visualization
 
 figure()
     title({'FIXED SQRT',['R^2:' num2str(gof_fsqrt.rsquare,3) ', RMSE:' num2str(gof_fsqrt.rmse,3) ', MAPE:' num2str(mape_fsqrt,3)] })
@@ -374,7 +370,7 @@ figure()
     legend(["Samples","Model"])
     grid on;
 
-% Saving best results in .mat fajl
+% Saving the best results in .mat fajl
 best_model = model_exp1;
 save('modelDuration.mat', 'best_model');
 
@@ -396,8 +392,6 @@ figure
     legend('Data histogram', 'Fitted distribution');
     title('Fitting a Weibull distribution over saccade amplitude samples');
 hold off;
-
-
 
 
 %% Checking fixation duration and saccade amplitude relationship
