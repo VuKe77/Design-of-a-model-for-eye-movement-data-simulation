@@ -1,0 +1,67 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Design of a model for eye movement data simulation
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Vukašin
+    family-names: Spasojević
+    email: spasojevic.vukasin8@gmail.com
+    affiliation: >-
+      University of Belgrade - School of Electrical
+      Engineering
+  - given-names: Smilja
+    family-names: Stokanović
+    email: smiljastokanovic@gmail.com
+    affiliation: >-
+      University of Belgrade - School of Electrical
+      Engineering
+    orcid: 'https://orcid.org/0000-0003-0887-2615'
+  - given-names: Ilija
+    family-names: Tansković
+    email: ilija.tanaskovic@ivi.ac.rs
+    affiliation: >-
+      University of Belgrade - School of Electrical
+      Engineering and Institute for Artificial Intelligence
+      R&D
+    orcid: 'https://orcid.org/0000-0002-6488-4074'
+  - given-names: Jaka
+    family-names: Sodnik
+    email: jaka.sodnik@fe.uni-lj.si
+    affiliation: >-
+      Faculty of Electrical Engineering, University of
+      Ljubljana
+    orcid: 'https://orcid.org/0000-0002-8915-9493'
+  - given-names: Nadica
+    family-names: Miljković
+    email: nadica.miljkovic@etf.bg.ac.rs
+    affiliation: >-
+      University of Belgrade - School of Electrical
+      Engineering and Faculty of Electrical Engineering,
+      University of Ljubljana
+    orcid: 'https://orcid.org/0000-0002-3933-6076'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.7698446
+repository-code: >-
+  https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation
+repository: 'https://doi.org/10.5281/zenodo.7698446'
+abstract: >-
+  Repository "Design of a model for eye movement data
+  simulation" contains MATLAB code for generating
+  synthesized saccades that can be further used for
+  evaluation of processing workflows, especially for saccade
+  detection. 
+keywords:
+  - adaptive threshold
+  - eye movements
+  - saccade detection
+  - synthesized data
+license: GPL-3.0-or-later
+commit: ggg
+version: '1'
+date-released: '2024-09-06'
