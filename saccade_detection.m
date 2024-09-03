@@ -30,6 +30,7 @@ center = [840 525+127.2727];
 resolution_cm = [47.4, 29.7];
 distance = 55;
 ratio = resolution_cm./resolution_pix;
+
 %visualization of the subject screen view
 
 deg_x = raw_data(:,1);
@@ -44,14 +45,15 @@ plot(raw_x,raw_y)
 title('Coordinates of the screen view')
 xlabel('x[pix]')
 ylabel('y[pix]')
-%% vizualizacija 
+
+%% Visualization
 figure
     plot(t,deg_x)
     ylabel('Amplitude d.v.a[\circ]')
     xlabel('Time[s]')
     title(['Original signal'])
 
-%% filtriranje
+%% Filtering
 
 filt_x = MA_filter(deg_x, floor(Fs/1000*5)); %window length of 5 ms
 filt_y = MA_filter(deg_y, floor(Fs/1000*5));
@@ -66,7 +68,7 @@ figure()
     legend(["original signal", "filtrated signal"])
     hold off;
 
-%% calculates the position (amplitude) and speed of eyeball movement
+%% Calculates the position (amplitude) and speed of eyeball movement
 %analysis is performed only on horizontal saccades
 gaze_amp = filt_x; 
 gaze_vel = abs(central_der(gaze_amp',1/Fs));
@@ -139,7 +141,7 @@ for i=1:length(peak_idxs)
         
     end
 end
-%offseta detection
+%offset detection
 noise_window = floor(Fs/1000*40); %40ms window
 a=0.7;
 b=0.3;
@@ -175,7 +177,7 @@ durations = offset_idxs-onset_idxs;
 valid = ones(1,length(durations));
 %Rejection of irregular saccades
 min_duration=ceil(Fs/1000*10);
-valid(durations<min_duration)=0;%Saccades shorter than 10ms are discarded
+valid(durations<min_duration)=0;%Saccades shorter than 10 ms are discarded
 valid(peak_vals>1000) = 0; %Saccades higher than 1000 deg/s are not possible
 
 
@@ -205,7 +207,7 @@ gaze_times =onset_idxs(2:end)- offset_idxs(1:end-1);
 durations = durations/Fs*1000;
 gaze_times = gaze_times/Fs*1000;
 
-%visualize    
+%Visualization
 figure()
     hold all
     title("Absolute angular velocity")
