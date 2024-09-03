@@ -1,28 +1,24 @@
 
 # Design of a model for eye movement data simulation
-The initial version of the presented algorithm was developed for the Bachelor Thesis titled "Design of a model for eye movement data simulation" authored by Vukašin Spasojević and defended under the mentorship of [Assoc. Prof. Nadica Miljković](https://www.etf.bg.ac.rs/en/faculty/staff/nadica-miljkovic-4323) on August 27, 2024 at the [University of Belgrade - School of Electrical Engineering](https://www.etf.bg.ac.rs/en).
+The initial version of the presented algorithm was developed for the Bachelor Thesis titled "Design of a model for eye movement data simulation" authored by Vukašin Spasojević and defended under the mentorship of [Assoc. Prof. Nadica Miljković](https://www.etf.bg.ac.rs/en/faculty/staff/nadica-miljkovic-4323) on August 27, 2024 at the [University of Belgrade - School of Electrical Engineering](https://www.etf.bg.ac.rs/en). Current repository version is used for presenting a model for the paper titled "Computational Method for Saccade Generation" and authored by [Smilja Stokanović](https://orcid.org/0000-0003-0887-2615), Vukašin Spasojević, [Ilija Tanasković](https://orcid.org/0000-0002-6488-4074), [Jaka Sodnik](https://orcid.org/0000-0002-8915-9493), and [Nadica Miljković](https://orcid.org/0000-0002-3933-6076) - currently under review (information from September 6, 2024).
 
 ## GitHub Repository Contents
-This repository contains MATLAB code for simulating eye movement signals. First, a [detection algorithm](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/saccade_detection.m) is applied to extract the statistical parameters of saccades. Then, Weibull distributions and main sequence models are fitted to these parameters. Saccade amplitude, duration, peak velocity, and fixation duration are sampled from these models and used for signal simulation. Saccades are simulated using Hill's equation. Optionally sampling frequency can be changed and noise can be added to the signal. To simulate the signal, use [simulate_signal.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/simulate_signal.m). 
+This repository contains code prepared in MATLAB R2020A (The Mathworks, Natick, USA) for simulating eye movement signals (precisely saccades). Firstly, a detection algorithm ([saccade_etection.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/saccade_detection.m)) is applied to extract the main statistical parameters related to the saccades from openly available data. Then, Weibull distributions and main sequence models are fitted to obtained parameters to model dependences between saccade amplitude and maximal velocity, as well as saccade amplitude and saccade duration. Saccade amplitude, duration, peak velocity, and fixation duration are sampled from these models and used for signal simulation. Further, saccades are simulated using Hill's equation. Optionally, the sampling frequency can be changed and noise can be added to the signal. To simulate the signal, use [simulate_signal.m](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation/blob/master/simulate_signal.m) file.
+
 #### Example:
 ```ruby
-Tmax = 10; %length of simulated signal
-Fs = 200; %sampling frequency
-noise = 0;
-SIM1 = simulate_signal(Tmax,Fs,noise);
+Tmax = 10; % selected length of a simulated signal
+Fs = 200; % selected sampling frequency
+noise = 0; % selected level of noise
+SIM1 = simulate_signal(Tmax,Fs,noise); % signal simulation
 
 ```
 ![git_simuliran_signal](https://github.com/user-attachments/assets/59b4fb37-3d80-4e44-8e8c-b82fa3b89aa5)
 ![git_obelezen_signal](https://github.com/user-attachments/assets/fb18c65b-2689-4749-b0a8-7be8328880ae)
 
 
-
-
-
-
-
 ### License
-Shared programs are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. These programs are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with these programs. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
+Unless otherwise stated, shared programs are free software: anyone can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (optionally) any later version. These programs are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For more details, see the GNU General Public License. Anyone accessing this code should have received a copy of the GNU General Public License along with these programs. If not, the license is available at: [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
 
 Please, report any bugs to the Author listed in the [Contact section](https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation?tab=readme-ov-file#contacts).
 
