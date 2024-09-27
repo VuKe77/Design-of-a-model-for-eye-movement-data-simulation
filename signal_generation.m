@@ -44,24 +44,6 @@ figure
 
 
     
-%% Perform detection algorithm
-
-simulated = [SIM2.SIGNALS.AMP' SIM1.SIGNALS.AMP'];
-
-DATA = saccade_detection(simulated,t);
-%%
-figure
-    scatter(DATA.SACC.amplitudes,DATA.SACC.peak_vals)
-    xlabel('Amplitude[\circ]')
-    ylabel("Velocity peaks[\circ/s]")
-    title("Main sequence")
-    grid on;
-figure
-    scatter(DATA.SACC.amplitudes,DATA.SACC.durations)
-    xlabel('Amplitude[\circ]')
-    ylabel("Saccade duration[ms]")
-    title("Main sequence")
-    grid on;
 
 
    
