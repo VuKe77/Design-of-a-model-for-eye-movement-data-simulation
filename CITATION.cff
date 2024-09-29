@@ -1,7 +1,7 @@
 # This CITATION.cff file was generated with cffinit.
 # Visit https://bit.ly/cffinit to generate yours today!
 
-cff-version: 1.2.0
+cff-version: 2.1.0
 title: Design of a model for eye movement data simulation
 message: >-
   If you use this software, please cite it using the
@@ -46,10 +46,10 @@ authors:
     orcid: 'https://orcid.org/0000-0002-3933-6076'
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.7698446
+    value: 10.5281/zenodo.13857189
 repository-code: >-
   https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation
-repository: 'https://doi.org/10.5281/zenodo.7698446'
+repository: 'https://doi.org/10.5281/zenodo.13857189'
 abstract: >-
   Repository "Design of a model for eye movement data
   simulation" contains MATLAB code for generating
@@ -60,8 +60,7 @@ keywords:
   - adaptive threshold
   - eye movements
   - saccade detection
-  - synthesized data
+  - synthesized data10.5281/zenodo.13857189
 license: GPL-3.0-or-later
-commit: ggg
-version: '1'
-date-released: '2024-09-06'
+version: '2.1.0'
+date-released: '2024-09-29'
