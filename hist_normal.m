@@ -5,11 +5,11 @@ x_mean = mean(x);
 x_std = std(durations);
 x = [min_x:0.001:max_x];
 duration_normal = normpdf(x,x_mean,x_std);
+
 figure
     hold on;
-    title(["Histogram" title "saccade: \mu: " num2str(x_mean,2) "\, sigma: " num2str(x_std,2)])
-    histogram(durations,25,'Normalization','pdf')
-    plot(x,duration_normal)
+            title(["Histogram" title "saccade: \mu: " num2str(x_mean,2) "\, sigma: " num2str(x_std,2)])
+        histogram(durations,25,'Normalization','pdf')
+        plot(x,duration_normal)
     hold off;
 end
-
