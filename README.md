@@ -55,7 +55,7 @@ The MATLAB code is provided without any guarantee and it is not intended for med
 
 ## How to cite this repository?
 If you find provided code useful for your own research and teaching class, please cite the following references:
-1) Spasojević, V., Stokanović, S., Tanasković, I., Sodnik, J., & Miljković, N. (2024). Design of a model for eye movement data simulation, GitHub code repository, https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation
+1) Spasojević, V., Stokanović, S., Tanasković, I., Sodnik, J., & Miljković, N. (2024). Design of a model for eye movement data simulation, Zenodo, https://doi.org/10.5281/zenodo.13857190, also available on GitHub: https://github.com/VuKe77/Design-of-a-model-for-eye-movement-data-simulation
 2) Stokanović, S., Spasojević, V., Tanasković, I., Sodnik, J., & Miljković, N. (2024). A Computational Method for Saccade Velocity Profiles Generation, The IEEE International Conference on Bioinformatics & Bioengineering (BIBE2024) November 27-29, 2024. Kragujevac, Serbia, in print.
 
 ## Contact
